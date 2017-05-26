@@ -6,13 +6,14 @@ import app.index.IndexController;
 import app.login.LoginController;
 import app.user.UserDao;
 import app.util.Filters;
+import app.util.HerokuUtil;
 import app.util.Path;
 import app.util.ViewUtil;
 import javalin.Javalin;
 
 import static javalin.ApiBuilder.*;
 
-public class Application {
+public class Main {
 
     // Declare dependencies
     public static BookDao bookDao;
@@ -25,7 +26,7 @@ public class Application {
         userDao = new UserDao();
 
         Javalin app = Javalin.create()
-            .port(7000)
+            .port(HerokuUtil.getHerokuAssignedPort())
             .enableStaticFiles("/public")
             .start();
 

@@ -8,7 +8,7 @@ import javalin.Handler;
 import javalin.Request;
 import javalin.Response;
 
-import static app.Application.*;
+import static app.Main.*;
 
 public class IndexController {
     public static Handler serveIndexPage = (Request req, Response res) -> {

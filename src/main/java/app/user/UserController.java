@@ -2,7 +2,7 @@ package app.user;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import static app.Application.*;
+import static app.Main.*;
 
 public class UserController {
 
