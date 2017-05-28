@@ -9,9 +9,9 @@ import app.util.Filters;
 import app.util.HerokuUtil;
 import app.util.Path;
 import app.util.ViewUtil;
-import javalin.Javalin;
+import io.javalin.Javalin;
 
-import static javalin.ApiBuilder.*;
+import static io.javalin.ApiBuilder.*;
 
 public class Main {
 

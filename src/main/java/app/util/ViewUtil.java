@@ -3,9 +3,9 @@ package app.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import javalin.ErrorHandler;
-import javalin.Request;
-import javalin.Response;
+import io.javalin.ErrorHandler;
+import io.javalin.Request;
+import io.javalin.Response;
 
 import static app.util.RequestUtil.*;
 

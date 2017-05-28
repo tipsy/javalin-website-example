@@ -1,6 +1,6 @@
 package app.util;
 
-import javalin.Request;
+import io.javalin.Request;
 
 public class RequestUtil {
 

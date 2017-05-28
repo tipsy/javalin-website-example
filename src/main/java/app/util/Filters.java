@@ -1,8 +1,8 @@
 package app.util;
 
-import javalin.Handler;
-import javalin.Request;
-import javalin.Response;
+import io.javalin.Handler;
+import io.javalin.Request;
+import io.javalin.Response;
 
 import static app.util.RequestUtil.*;
 

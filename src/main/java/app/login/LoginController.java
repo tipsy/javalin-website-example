@@ -5,9 +5,9 @@ import java.util.Map;
 import app.user.UserController;
 import app.util.Path;
 import app.util.ViewUtil;
-import javalin.Handler;
-import javalin.Request;
-import javalin.Response;
+import io.javalin.Handler;
+import io.javalin.Request;
+import io.javalin.Response;
 
 import static app.util.RequestUtil.*;
 
