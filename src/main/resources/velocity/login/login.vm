@@ -9,7 +9,7 @@
         <p class="notification">$msg.get("LOGIN_LOGGED_OUT")</p>
     #end
     <h1>$msg.get("LOGIN_HEADING")</h1>
-    <p>$msg.get("LOGIN_INSTRUCTIONS", $WebPath.getINDEX())</p>
+    <p>$msg.get("LOGIN_INSTRUCTIONS", "/index")</p>
     <label>$msg.get("LOGIN_LABEL_USERNAME")</label>
     <input type="text" name="username" placeholder="$msg.get("LOGIN_LABEL_USERNAME")" value="" required>
     <label>$msg.get("LOGIN_LABEL_PASSWORD")</label>

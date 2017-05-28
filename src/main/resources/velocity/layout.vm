@@ -9,7 +9,7 @@
 <body>
     <header>
         <nav>
-            <a href="$WebPath.getINDEX()"><img id="logo" src="/img/logo.png" alt="Javalin Library"></a>
+            <a href="/index"><img id="logo" src="/img/logo.png" alt="Javalin Library"></a>
             <ul id="chooseLanguage">
                 <form>
                     <li>
@@ -21,15 +21,15 @@
                 </form>
             </ul>
             <ul id="menu">
-                <li><a href="$WebPath.getBOOKS()">$msg.get("COMMON_NAV_ALLBOOKS")</a></li>
+                <li><a href="/books">$msg.get("COMMON_NAV_ALLBOOKS")</a></li>
                 #if($currentUser)
                     <li>
-                        <form method="post" action="$WebPath.getLOGOUT()">
+                        <form method="post" action="/logout">
                             <button id="logout">$msg.get("COMMON_NAV_LOGOUT")</button>
                         </form>
                     </li>
                 #else
-                    <li><a href="$WebPath.getLOGIN()"">$msg.get("COMMON_NAV_LOGIN")</a></li>
+                    <li><a href="/index"">$msg.get("COMMON_NAV_LOGIN")</a></li>
                 #end
             </ul>
         </nav>

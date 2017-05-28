@@ -15,7 +15,6 @@ public class ViewUtil {
         Map<String, Object> model = new HashMap<>();
         model.put("msg", new MessageBundle(getSessionLocale(req)));
         model.put("currentUser", getSessionCurrentUser(req));
-        model.put("WebPath", Path.Web.class); // Access application URLs from templates
         return model;
     }
 

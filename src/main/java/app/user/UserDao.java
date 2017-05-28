@@ -15,11 +15,11 @@ public class UserDao {
     );
 
     public User getUserByUsername(String username) {
-        return users.stream().filter(b -> b.getUsername().equals(username)).findFirst().orElse(null);
+        return users.stream().filter(b -> b.username.equals(username)).findFirst().orElse(null);
     }
 
     public Iterable<String> getAllUserNames() {
-        return users.stream().map(User::getUsername).collect(Collectors.toList());
+        return users.stream().map(user -> user.username).collect(Collectors.toList());
     }
 
 }

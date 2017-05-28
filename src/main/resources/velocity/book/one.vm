@@ -1,11 +1,11 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($book)
-    <h1>$book.getTitle()</h1>
-    <h2>$book.getAuthor()</h2>
+    <h1>$book.title</h1>
+    <h2>$book.author</h2>
     <div class="book">
         <div class="bookCover">
-            <img src="$book.getLargeCover()" alt="$book.getTitle()">
+            <img src="$book.largeCover" alt="$book.title">
         </div>
     </div>
     #else

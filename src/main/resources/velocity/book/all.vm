@@ -4,11 +4,11 @@
 <div class="row row-3">
     #foreach($book in $books)
         <div class="col">
-            <a class="book" href="$WebPath.getBOOKS()/$book.getIsbn()">
+            <a class="book" href="/books/$book.isbn">
                 <div class="bookCover">
-                    <img src="$book.getMediumCover()" alt="$book.getTitle()">
+                    <img src="$book.mediumCover" alt="$book.title">
                 </div>
-                $msg.get("BOOKS_CAPTION", $book.getTitle(), $book.getAuthor())
+                $msg.get("BOOKS_CAPTION", $book.title, $book.author)
             </a>
         </div>
     #end

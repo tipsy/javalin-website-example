@@ -16,8 +16,8 @@ public class UserController {
         if (user == null) {
             return false;
         }
-        String hashedPassword = BCrypt.hashpw(password, user.getSalt());
-        return hashedPassword.equals(user.getHashedPassword());
+        String hashedPassword = BCrypt.hashpw(password, user.salt);
+        return hashedPassword.equals(user.hashedPassword);
     }
 
     // This method doesn't do anything, it's just included as an example
