@@ -29,7 +29,7 @@
                         </form>
                     </li>
                 #else
-                    <li><a href="/index"">$msg.get("COMMON_NAV_LOGIN")</a></li>
+                    <li><a href="/login">$msg.get("COMMON_NAV_LOGIN")</a></li>
                 #end
             </ul>
         </nav>
