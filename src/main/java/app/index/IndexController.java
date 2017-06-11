@@ -5,16 +5,14 @@ import java.util.Map;
 import app.util.Path;
 import app.util.ViewUtil;
 import io.javalin.Handler;
-import io.javalin.Request;
-import io.javalin.Response;
 
 import static app.Main.*;
 
 public class IndexController {
-    public static Handler serveIndexPage = (Request req, Response res) -> {
-        Map<String, Object> model = ViewUtil.baseModel(req);
+    public static Handler serveIndexPage = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("users", userDao.getAllUserNames());
         model.put("book", bookDao.getRandomBook());
-        res.renderVelocity(Path.Template.INDEX, model);
+        ctx.renderVelocity(Path.Template.INDEX, model);
     };
 }

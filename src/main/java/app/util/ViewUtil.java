@@ -3,23 +3,22 @@ package app.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.javalin.Context;
 import io.javalin.ErrorHandler;
-import io.javalin.Request;
-import io.javalin.Response;
 
 import static app.util.RequestUtil.*;
 
 public class ViewUtil {
 
-    public static Map<String, Object> baseModel(Request req) {
+    public static Map<String, Object> baseModel(Context ctx) {
         Map<String, Object> model = new HashMap<>();
-        model.put("msg", new MessageBundle(getSessionLocale(req)));
-        model.put("currentUser", getSessionCurrentUser(req));
+        model.put("msg", new MessageBundle(getSessionLocale(ctx)));
+        model.put("currentUser", getSessionCurrentUser(ctx));
         return model;
     }
 
-    public static ErrorHandler notFound = (Request req, Response res) -> {
-        res.renderVelocity(Path.Template.NOT_FOUND, baseModel(req));
+    public static ErrorHandler notFound = ctx -> {
+        ctx.renderVelocity(Path.Template.NOT_FOUND, baseModel(ctx));
     };
 
 }

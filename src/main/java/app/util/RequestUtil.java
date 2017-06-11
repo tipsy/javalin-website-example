@@ -1,46 +1,46 @@
 package app.util;
 
-import io.javalin.Request;
+import io.javalin.Context;
 
 public class RequestUtil {
 
-    public static String getQueryLocale(Request request) {
-        return request.queryParam("locale");
+    public static String getQueryLocale(Context ctx) {
+        return ctx.queryParam("locale");
     }
 
-    public static String getParamIsbn(Request request) {
-        return request.param("isbn");
+    public static String getParamIsbn(Context ctx) {
+        return ctx.param("isbn");
     }
 
-    public static String getQueryUsername(Request request) {
-        return request.formParam("username");
+    public static String getQueryUsername(Context ctx) {
+        return ctx.formParam("username");
     }
 
-    public static String getQueryPassword(Request request) {
-        return request.formParam("password");
+    public static String getQueryPassword(Context ctx) {
+        return ctx.formParam("password");
     }
 
-    public static String getQueryLoginRedirect(Request request) {
-        return request.queryParam("loginRedirect");
+    public static String getQueryLoginRedirect(Context ctx) {
+        return ctx.queryParam("loginRedirect");
     }
 
-    public static String getSessionLocale(Request request) {
-        return (String) request.unwrap().getSession().getAttribute("locale");
+    public static String getSessionLocale(Context ctx) {
+        return (String) ctx.request().getSession().getAttribute("locale");
     }
 
-    public static String getSessionCurrentUser(Request request) {
-        return (String) request.unwrap().getSession().getAttribute("currentUser");
+    public static String getSessionCurrentUser(Context ctx) {
+        return (String) ctx.request().getSession().getAttribute("currentUser");
     }
 
-    public static boolean removeSessionAttrLoggedOut(Request request) {
-        String loggedOut = (String) request.unwrap().getSession().getAttribute("loggedOut");
-        request.unwrap().getSession().removeAttribute("loggedOut");
+    public static boolean removeSessionAttrLoggedOut(Context ctx) {
+        String loggedOut = (String) ctx.request().getSession().getAttribute("loggedOut");
+        ctx.request().getSession().removeAttribute("loggedOut");
         return loggedOut != null;
     }
 
-    public static String removeSessionAttrLoginRedirect(Request request) {
-        String loginRedirect = (String) request.unwrap().getSession().getAttribute("loginRedirect");
-        request.unwrap().getSession().removeAttribute("loginRedirect");
+    public static String removeSessionAttrLoginRedirect(Context ctx) {
+        String loginRedirect = (String) ctx.request().getSession().getAttribute("loginRedirect");
+        ctx.request().getSession().removeAttribute("loginRedirect");
         return loginRedirect;
     }
 

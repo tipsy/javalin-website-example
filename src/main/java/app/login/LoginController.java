@@ -6,52 +6,50 @@ import app.user.UserController;
 import app.util.Path;
 import app.util.ViewUtil;
 import io.javalin.Handler;
-import io.javalin.Request;
-import io.javalin.Response;
 
 import static app.util.RequestUtil.*;
 
 public class LoginController {
 
-    public static Handler serveLoginPage = (Request req, Response res) -> {
-        Map<String, Object> model = ViewUtil.baseModel(req);
-        model.put("loggedOut", removeSessionAttrLoggedOut(req));
-        model.put("loginRedirect", removeSessionAttrLoginRedirect(req));
-        res.renderVelocity(Path.Template.LOGIN, model);
+    public static Handler serveLoginPage = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        model.put("loggedOut", removeSessionAttrLoggedOut(ctx));
+        model.put("loginRedirect", removeSessionAttrLoginRedirect(ctx));
+        ctx.renderVelocity(Path.Template.LOGIN, model);
     };
 
-    public static Handler handleLoginPost = (Request req, Response res) -> {
-        Map<String, Object> model = ViewUtil.baseModel(req);
-        if (!UserController.authenticate(getQueryUsername(req), getQueryPassword(req))) {
+    public static Handler handleLoginPost = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+        if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {
             model.put("authenticationFailed", true);
-            res.renderVelocity(Path.Template.LOGIN, model);
+            ctx.renderVelocity(Path.Template.LOGIN, model);
         } else {
-            req.unwrap().getSession().setAttribute("currentUser", getQueryUsername(req));
+            ctx.request().getSession().setAttribute("currentUser", getQueryUsername(ctx));
             model.put("authenticationSucceeded", true);
-            model.put("currentUser", getQueryUsername(req));
-            if (getQueryLoginRedirect(req) != null) {
-                res.redirect(getQueryLoginRedirect(req));
+            model.put("currentUser", getQueryUsername(ctx));
+            if (getQueryLoginRedirect(ctx) != null) {
+                ctx.redirect(getQueryLoginRedirect(ctx));
             }
-            res.renderVelocity(Path.Template.LOGIN, model);
+            ctx.renderVelocity(Path.Template.LOGIN, model);
         }
 
     };
 
-    public static Handler handleLogoutPost = (Request req, Response res) -> {
-        req.unwrap().getSession().removeAttribute("currentUser");
-        req.unwrap().getSession().setAttribute("loggedOut", "true");
-        res.redirect(Path.Web.LOGIN);
+    public static Handler handleLogoutPost = ctx -> {
+        ctx.request().getSession().removeAttribute("currentUser");
+        ctx.request().getSession().setAttribute("loggedOut", "true");
+        ctx.redirect(Path.Web.LOGIN);
     };
 
     // The origin of the request (request.pathInfo()) is saved in the session so
     // the user can be redirected back after login
-    public static Handler ensureLoginBeforeViewingBooks = (Request req, Response res) -> {
-        if (!req.path().startsWith("/books")) {
+    public static Handler ensureLoginBeforeViewingBooks = ctx -> {
+        if (!ctx.path().startsWith("/books")) {
             return;
         }
-        if (req.unwrap().getSession().getAttribute("currentUser") == null) {
-            req.unwrap().getSession().setAttribute("loginRedirect", req.path());
-            res.redirect(Path.Web.LOGIN);
+        if (ctx.request().getSession().getAttribute("currentUser") == null) {
+            ctx.request().getSession().setAttribute("loginRedirect", ctx.path());
+            ctx.redirect(Path.Web.LOGIN);
         }
     };
 
