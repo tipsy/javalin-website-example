@@ -31,7 +31,6 @@ public class Main {
             .start();
 
         app.routes(() -> {
-            before(Filters.stripTrailingSlashes);
             before(Filters.handleLocaleChange);
             before(LoginController.ensureLoginBeforeViewingBooks);
             get(Path.Web.INDEX, IndexController.serveIndexPage);
