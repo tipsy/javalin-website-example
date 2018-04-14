@@ -28,6 +28,7 @@ public class Main {
         Javalin app = Javalin.create()
             .port(HerokuUtil.getHerokuAssignedPort())
             .enableStaticFiles("/public")
+            .enableRouteOverview("/routes")
             .start();
 
         app.routes(() -> {
