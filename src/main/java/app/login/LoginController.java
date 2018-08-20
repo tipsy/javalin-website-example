@@ -15,29 +15,28 @@ public class LoginController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("loggedOut", removeSessionAttrLoggedOut(ctx));
         model.put("loginRedirect", removeSessionAttrLoginRedirect(ctx));
-        ctx.renderVelocity(Path.Template.LOGIN, model);
+        ctx.render(Path.Template.LOGIN, model);
     };
 
     public static Handler handleLoginPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {
             model.put("authenticationFailed", true);
-            ctx.renderVelocity(Path.Template.LOGIN, model);
+            ctx.render(Path.Template.LOGIN, model);
         } else {
-            ctx.request().getSession().setAttribute("currentUser", getQueryUsername(ctx));
+            ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
             model.put("authenticationSucceeded", true);
             model.put("currentUser", getQueryUsername(ctx));
             if (getQueryLoginRedirect(ctx) != null) {
                 ctx.redirect(getQueryLoginRedirect(ctx));
             }
-            ctx.renderVelocity(Path.Template.LOGIN, model);
+            ctx.render(Path.Template.LOGIN, model);
         }
-
     };
 
     public static Handler handleLogoutPost = ctx -> {
-        ctx.request().getSession().removeAttribute("currentUser");
-        ctx.request().getSession().setAttribute("loggedOut", "true");
+        ctx.sessionAttribute("currentUser", null);
+        ctx.sessionAttribute("loggedOut", "true");
         ctx.redirect(Path.Web.LOGIN);
     };
 
@@ -47,8 +46,8 @@ public class LoginController {
         if (!ctx.path().startsWith("/books")) {
             return;
         }
-        if (ctx.request().getSession().getAttribute("currentUser") == null) {
-            ctx.request().getSession().setAttribute("loginRedirect", ctx.path());
+        if (ctx.sessionAttribute("currentUser") == null) {
+            ctx.sessionAttribute("loginRedirect", ctx.path());
             ctx.redirect(Path.Web.LOGIN);
         }
     };

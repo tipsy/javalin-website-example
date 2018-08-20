@@ -14,12 +14,12 @@ public class BookController {
     public static Handler fetchAllBooks = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("books", bookDao.getAllBooks());
-        ctx.renderVelocity(Path.Template.BOOKS_ALL, model);
+        ctx.render(Path.Template.BOOKS_ALL, model);
     };
 
     public static Handler fetchOneBook = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("book", bookDao.getBookByIsbn(getParamIsbn(ctx)));
-        ctx.renderVelocity(Path.Template.BOOKS_ONE, model);
+        ctx.render(Path.Template.BOOKS_ONE, model);
     };
 }

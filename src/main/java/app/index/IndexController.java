@@ -13,6 +13,6 @@ public class IndexController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         model.put("users", userDao.getAllUserNames());
         model.put("book", bookDao.getRandomBook());
-        ctx.renderVelocity(Path.Template.INDEX, model);
+        ctx.render(Path.Template.INDEX, model);
     };
 }

@@ -11,7 +11,7 @@ import app.util.Path;
 import app.util.ViewUtil;
 import io.javalin.Javalin;
 
-import static io.javalin.ApiBuilder.*;
+import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class Main {
 

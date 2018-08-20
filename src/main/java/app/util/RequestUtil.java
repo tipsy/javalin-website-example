@@ -9,7 +9,7 @@ public class RequestUtil {
     }
 
     public static String getParamIsbn(Context ctx) {
-        return ctx.param("isbn");
+        return ctx.pathParam("isbn");
     }
 
     public static String getQueryUsername(Context ctx) {
@@ -25,22 +25,22 @@ public class RequestUtil {
     }
 
     public static String getSessionLocale(Context ctx) {
-        return (String) ctx.request().getSession().getAttribute("locale");
+        return (String) ctx.sessionAttribute("locale");
     }
 
     public static String getSessionCurrentUser(Context ctx) {
-        return (String) ctx.request().getSession().getAttribute("currentUser");
+        return (String) ctx.sessionAttribute("currentUser");
     }
 
     public static boolean removeSessionAttrLoggedOut(Context ctx) {
-        String loggedOut = (String) ctx.request().getSession().getAttribute("loggedOut");
-        ctx.request().getSession().removeAttribute("loggedOut");
+        String loggedOut = ctx.sessionAttribute("loggedOut");
+        ctx.sessionAttribute("loggedOut", null);
         return loggedOut != null;
     }
 
     public static String removeSessionAttrLoginRedirect(Context ctx) {
-        String loginRedirect = (String) ctx.request().getSession().getAttribute("loginRedirect");
-        ctx.request().getSession().removeAttribute("loginRedirect");
+        String loginRedirect = ctx.sessionAttribute("loginRedirect");
+        ctx.sessionAttribute("loginRedirect", null);
         return loginRedirect;
     }
 

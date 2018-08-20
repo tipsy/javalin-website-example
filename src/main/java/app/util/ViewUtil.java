@@ -18,7 +18,7 @@ public class ViewUtil {
     }
 
     public static ErrorHandler notFound = ctx -> {
-        ctx.renderVelocity(Path.Template.NOT_FOUND, baseModel(ctx));
+        ctx.render(Path.Template.NOT_FOUND, baseModel(ctx));
     };
 
 }
