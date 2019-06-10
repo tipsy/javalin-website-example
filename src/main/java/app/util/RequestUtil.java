@@ -1,6 +1,7 @@
 package app.util;
 
-import io.javalin.Context;
+
+import io.javalin.http.Context;
 
 public class RequestUtil {
 

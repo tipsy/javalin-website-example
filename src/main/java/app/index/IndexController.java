@@ -1,10 +1,10 @@
 package app.index;
 
+import io.javalin.http.Handler;
 import java.util.Map;
 
 import app.util.Path;
 import app.util.ViewUtil;
-import io.javalin.Handler;
 
 import static app.Main.*;
 

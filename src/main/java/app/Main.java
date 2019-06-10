@@ -10,8 +10,11 @@ import app.util.HerokuUtil;
 import app.util.Path;
 import app.util.ViewUtil;
 import io.javalin.Javalin;
+import io.javalin.core.util.RouteOverviewPlugin;
+import static io.javalin.apibuilder.ApiBuilder.before;
+import static io.javalin.apibuilder.ApiBuilder.get;
+import static io.javalin.apibuilder.ApiBuilder.post;
 
-import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class Main {
 
@@ -25,11 +28,10 @@ public class Main {
         bookDao = new BookDao();
         userDao = new UserDao();
 
-        Javalin app = Javalin.create()
-            .port(HerokuUtil.getHerokuAssignedPort())
-            .enableStaticFiles("/public")
-            .enableRouteOverview("/routes")
-            .start();
+        Javalin app = Javalin.create(config -> {
+            config.addStaticFiles("/public");
+            config.registerPlugin(new RouteOverviewPlugin("/routes"));
+        }).start(HerokuUtil.getHerokuAssignedPort());
 
         app.routes(() -> {
             before(Filters.handleLocaleChange);

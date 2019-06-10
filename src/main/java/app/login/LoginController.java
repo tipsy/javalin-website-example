@@ -1,11 +1,11 @@
 package app.login;
 
+import io.javalin.http.Handler;
 import java.util.Map;
 
 import app.user.UserController;
 import app.util.Path;
 import app.util.ViewUtil;
-import io.javalin.Handler;
 
 import static app.util.RequestUtil.*;
 
