@@ -1,7 +1,7 @@
 package app.util;
 
 import io.javalin.http.Context;
-import io.javalin.http.ErrorHandler;
+import io.javalin.http.Handler;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +16,7 @@ public class ViewUtil {
         return model;
     }
 
-    public static ErrorHandler notFound = ctx -> {
+    public static Handler notFound = ctx -> {
         ctx.render(Path.Template.NOT_FOUND, baseModel(ctx));
     };
 
