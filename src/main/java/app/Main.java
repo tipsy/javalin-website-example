@@ -11,6 +11,7 @@ import app.util.Path;
 import app.util.ViewUtil;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
+import io.javalin.http.staticfiles.Location;
 import static io.javalin.apibuilder.ApiBuilder.before;
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
@@ -29,7 +30,7 @@ public class Main {
         userDao = new UserDao();
 
         Javalin app = Javalin.create(config -> {
-            config.addStaticFiles("/public");
+            config.addStaticFiles("/public", Location.CLASSPATH);
             config.registerPlugin(new RouteOverviewPlugin("/routes"));
         }).start(HerokuUtil.getHerokuAssignedPort());
 

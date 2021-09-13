@@ -27,8 +27,8 @@ public class LoginController {
             ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
             model.put("authenticationSucceeded", true);
             model.put("currentUser", getQueryUsername(ctx));
-            if (getQueryLoginRedirect(ctx) != null) {
-                ctx.redirect(getQueryLoginRedirect(ctx));
+            if (getFormParamRedirect(ctx) != null) {
+                ctx.redirect(getFormParamRedirect(ctx));
             }
             ctx.render(Path.Template.LOGIN, model);
         }

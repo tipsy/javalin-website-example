@@ -7,7 +7,7 @@ public class Path {
         public static final String LOGIN = "/login";
         public static final String LOGOUT = "/logout";
         public static final String BOOKS = "/books";
-        public static final String ONE_BOOK = "/books/:isbn";
+        public static final String ONE_BOOK = "/books/{isbn}";
     }
 
     public static class Template {

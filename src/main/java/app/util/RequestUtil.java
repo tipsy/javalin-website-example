@@ -21,8 +21,8 @@ public class RequestUtil {
         return ctx.formParam("password");
     }
 
-    public static String getQueryLoginRedirect(Context ctx) {
-        return ctx.queryParam("loginRedirect");
+    public static String getFormParamRedirect(Context ctx) {
+        return ctx.formParam("loginRedirect");
     }
 
     public static String getSessionLocale(Context ctx) {
